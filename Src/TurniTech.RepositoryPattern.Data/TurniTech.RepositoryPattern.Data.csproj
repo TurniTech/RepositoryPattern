@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TurniTech.RepositoryPattern.Infra\TurniTech.RepositoryPattern.Infra.csproj" />
+    <ProjectReference Include="..\TurniTech.RepositoryPattern.Models\TurniTech.RepositoryPattern.Models.csproj" />
+  </ItemGroup>
+
+</Project>
