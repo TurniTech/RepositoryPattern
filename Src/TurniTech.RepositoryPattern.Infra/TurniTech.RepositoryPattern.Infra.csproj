@@ -5,11 +5,25 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Contracts\**" />
+    <EmbeddedResource Remove="Contracts\**" />
+    <None Remove="Contracts\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Cosmos\CosmosClientFactory.cs" />
+    <Compile Remove="Cosmos\CosmosDbClient.cs" />
+    <Compile Remove="Cosmos\IContainerContext.cs" />
+    <Compile Remove="Cosmos\ICosmosClientFactory.cs" />
+    <Compile Remove="Cosmos\ICosmosDbClient.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.23.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Contracts\" />
+    <ProjectReference Include="..\TurniTech.Common\TurniTech.Common.csproj" />
   </ItemGroup>
 
 </Project>

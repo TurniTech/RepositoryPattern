@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading;
 using System.Threading.Tasks;
-using TurniTech.RepositoryPattern.Infra.Business;
+using TurniTech.Common.Contracts;
 
 namespace TurniTech.RepositoryPattern.Infra.Storage
 {
@@ -12,9 +13,9 @@ namespace TurniTech.RepositoryPattern.Infra.Storage
         /// <summary>
         /// Add an item to the persistance store
         /// </summary>
-        /// <param name="entity">The Entity object</param>
+        /// <param name="model">The model object</param>
         /// <returns>The added Entity object</returns>
-        Task<TModel> AddItemAsync(TModel entity);
+        Task<TModel> AddItemAsync(TModel model, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Gets an item by id and partition key
@@ -22,7 +23,7 @@ namespace TurniTech.RepositoryPattern.Infra.Storage
         /// <param name="id">The item identifier</param>
         /// <param name="partitionKey">The partition key</param>
         /// <returns>The Entity item object</returns>
-        Task<TModel> GetItemByIdAsync(string id, string partitionKey);
+        Task<TModel> GetItemByIdAsync(string id, string partitionKey, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Gets an items predicate Experssion
@@ -30,21 +31,21 @@ namespace TurniTech.RepositoryPattern.Infra.Storage
         /// <param name="predicate">The Expression predicate</param>
         /// <param name="searchOptions">Search options</param>
         /// <returns>The collection of Entity item objects</returns>
-        Task<IEnumerable<TModel>> GetItemsAsync(Expression<Func<TModel, bool>> predicate, SearchOptions searchOptions);
+        Task<IEnumerable<TModel>> GetItemsAsync(Expression<Func<TModel, bool>> predicate, SearchOptions searchOptions, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get Items by queryable 
         /// </summary>
         /// <param name="orderedQueryable">The ordered queryable object</param>
         /// <returns>The collection of Entity item objects</returns>
-        Task<IEnumerable<TModel>> GetItemsAsync(IOrderedQueryable<TModel> orderedQueryable);
+        IAsyncEnumerator<TModel> GetItemsAsync(IOrderedQueryable<TModel> orderedQueryable, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get Items count by queryable 
         /// </summary>
         /// <param name="orderedQueryable">The ordered queryable object</param>
         /// <returns>The count of items</returns>
-        Task<int> GetItemsCountAsync(IOrderedQueryable<TModel> orderedQueryable);
+        Task<int> GetItemsCountAsync(IOrderedQueryable<TModel> orderedQueryable, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Creates the document query
@@ -57,9 +58,9 @@ namespace TurniTech.RepositoryPattern.Infra.Storage
         /// Replaces an item by entity endentifier
         /// </summary>
         /// <param name="id">The Entity identifier</param>
-        /// <param name="entity">The Entity object</param>
+        /// <param name="model">The Entity object</param>
         /// <returns>The Entity item object</returns>
-        Task<TModel> ReplaceItemAsync(string id, TModel entity);
+        Task<TModel> ReplaceItemAsync(string id, TModel model, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Deletes an items from persistance store
@@ -67,6 +68,6 @@ namespace TurniTech.RepositoryPattern.Infra.Storage
         /// <param name="id">The item indentifier</param>
         /// <param name="partitionKey">The partition key</param>
         /// <returns>The true if the operation is successful, otherwise false</returns>
-        Task<bool> DeleteItemAsync(string id, string partitionKey);
+        Task<bool> DeleteItemAsync(string id, string partitionKey, CancellationToken cancellationToken = default);
     }
 }

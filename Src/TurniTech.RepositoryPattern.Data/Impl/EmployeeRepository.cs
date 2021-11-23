@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Azure.Cosmos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -12,18 +13,39 @@ namespace TurniTech.RepositoryPattern.Data.Impl
 {
     public class EmployeeRepository : BaseCosmosRepository<Employee, EmployeeEntity>, IEmployeeRepository
     {
-        protected override string DatabaseName => throw new NotImplementedException();
+        public EmployeeRepository(CosmosClient cosmosClient) : base(cosmosClient)
+        {
+        }
 
-        protected override string CollectionName => throw new NotImplementedException();
+        protected override string DatabaseName => "turnitech";
+
+        protected override string ContainerId => "Employees";
+
+        public override PartitionKey? ResolvePartitionKey(EmployeeEntity entity)
+        {
+            return base.ResolvePartitionKey(entity.City);
+        }
 
         protected override EmployeeEntity Convert(Employee businessModel)
         {
-            throw new NotImplementedException();
+            return new EmployeeEntity()
+            {
+                Id = businessModel.Id,
+                Name = businessModel.Name,
+                City = businessModel.City,
+                Salary = businessModel.Salary
+            };
         }
 
         protected override Employee Convert(EmployeeEntity dataModel)
         {
-            throw new NotImplementedException();
+            return new Employee()
+            {
+                Id = dataModel.Id,
+                Name = dataModel.Name,
+                City = dataModel.City,
+                Salary = dataModel.Salary
+            };
         }
 
         protected override Expression<Func<EmployeeEntity, bool>> Convert(Expression<Func<Employee, bool>> businessPredicate)

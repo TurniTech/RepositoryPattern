@@ -19,6 +19,8 @@ namespace TurniTech.RepositoryPattern.Infra.Storage
         /// </summary>
         public bool EnableCrossPartitionQuery { get; set; }
 
+        public bool AllowAsyncQueryExecution { get; set; }
+
         /// <summary>
         /// The partition key
         /// </summary>

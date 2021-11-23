@@ -10,6 +10,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TurniTech.RepositoryPattern.Business;
+using TurniTech.RepositoryPattern.Data;
 
 namespace TurniTech.RepositoryPattern
 {
@@ -25,6 +27,8 @@ namespace TurniTech.RepositoryPattern
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddData();
+            services.AddBusiness();
             services.AddControllers();
         }
 

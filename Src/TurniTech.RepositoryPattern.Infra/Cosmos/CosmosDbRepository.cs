@@ -2,9 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Net;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using TurniTech.Common.Contracts;
+using TurniTech.Common.Exceptions;
 using TurniTech.RepositoryPattern.Infra.Storage;
 
 namespace TurniTech.RepositoryPattern.Infra.Cosmos
@@ -19,16 +22,16 @@ namespace TurniTech.RepositoryPattern.Infra.Cosmos
     //    /// <summary>
     //    /// The identity serice
     //    /// </summary>
-    //    private readonly IIdentityService identitySerice;
+    //    //private readonly IIdentityService identitySerice;
 
     //    /// <summary>
     //    /// Initializes a new instance of the <see cref="CosmosDbRepository{T}" /> class.
     //    /// </summary>
     //    /// <param name="cosmosClientFactory">The cosmos client factory.</param>
-    //    protected CosmosDbRepository(ICosmosClientFactory cosmosClientFactory, IIdentityService identityService)
+    //    protected CosmosDbRepository(ICosmosClientFactory cosmosClientFactory)//, IIdentityService identityService)
     //    {
     //        this.cosmosClientFactory = cosmosClientFactory;
-    //        this.identitySerice = identityService;
+    //        //this.identitySerice = identityService;
     //    }
 
     //    /// <summary>
