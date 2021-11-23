@@ -24,10 +24,10 @@ namespace TurniTech.RepositoryPattern.Service.Controllers
             return await this.employeeManager.GetEmployee(id, "hyd");
         }
 
-        [HttpGet]
-        public async Task<Employee> Get()
+        [HttpPost]
+        public async Task<Employee> Get(Employee employee)
         {
-            return await this.employeeManager.AddEmployee(new Employee() { Name = "test", City = "hyd", Salary = 1000000 });
+            return await this.employeeManager.AddEmployee(employee);
         }
     }
 }
