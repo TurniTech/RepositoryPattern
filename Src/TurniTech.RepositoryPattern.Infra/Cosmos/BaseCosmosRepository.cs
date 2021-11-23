@@ -31,7 +31,6 @@ namespace TurniTech.RepositoryPattern.Infra.Cosmos
         /// Initializes the container.
         /// </summary>
         private void Initialize()
-        
         {
             this.container = this.cosmosClient.GetContainer(this.DatabaseName, this.ContainerId);
         }
